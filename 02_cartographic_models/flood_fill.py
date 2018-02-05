@@ -14,7 +14,6 @@ patch_id = 0
 fill = set()
 height, width = class_raster.shape
 
-# Define floodfile algorithm
 def flood_fill():
     while fill:
         r, c = fill.pop()
