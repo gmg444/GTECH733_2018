@@ -8,9 +8,8 @@ import numpy as np
 # the legend here:  https://www.mrlc.gov/nlcd11_leg.php
 file_name = "nlcd_subset_1.npy"
 class_raster = np.load(file_name)
-class_raster[class_raster <> 41] = 1  # Class 1 - everything else.
+class_raster[class_raster != 41] = 1  # Class 1 - everything else.
 class_raster[class_raster == 41] = 2  # Class 2 - deciduous forest.
-
 patch_id = 0
 fill = set()
 height, width = class_raster.shape
@@ -40,7 +39,7 @@ for r in range(class_raster.shape[0]):
     for c in range(class_raster.shape[1]):
         if fill_raster[r, c] == 0:
             patch_id += 1
-            print ("Processing patch " + str(patch_id))
+            print("Processing patch " + str(patch_id))
             fill.add((r, c))
             flood_fill()
 
@@ -49,27 +48,34 @@ patch_sizes = []
 for i in range(fill_raster.max()):
     patch_sizes.append((fill_raster == i).sum())
 patch_sizes.sort(reverse=True)
+plt.hist(patch_sizes, bins=10)
+plt.show()
 
 # Compare original, class raster, target raster
 original = np.load(file_name)
 
-plt.subplot(311)
-plt.title("Original")
-plt.imshow(original)
+# plt.subplot(211)
+# plt.title("Original")
+# plt.imshow(original)
 
-plt.subplot(312)
+plt.subplot(211)
 plt.title("Deciduous Forest / Other")
 plt.imshow(class_raster)
 
-plt.subplot(313)
+# plt.subplot(212)
+# plt.title("Patch Identifiers")
+# plt.imshow(fill_raster)
+
+
+plt.subplot(212)
 plt.title("Patch Identifiers")
-plt.imshow(fill_raster)
+plt.imshow(fill_raster * (class_raster == 2))
 
 # Skewed distribution of patch sizes.
-print(patch_sizes)
 plt.show(block=True)
-print ("All done!")
+print("All done!")
 
+"""
 #############################################################################
 # Flood fill with recursion - note that it causes a stack overflow.  The
 # version above avoids recursion using by storing pending data in a set.
@@ -110,3 +116,4 @@ plt.imshow(class_raster)
 plt.subplot(212)
 plt.imshow(fill_raster)
 plt.show()
+"""
