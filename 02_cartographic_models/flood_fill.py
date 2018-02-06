@@ -3,13 +3,14 @@
 # #############################################################################
 import matplotlib.pyplot as plt
 import numpy as np
+import json
 
 # Land cover classes from https://www.mrlc.gov/nlcd01_leg.php.  See
 # the legend here:  https://www.mrlc.gov/nlcd11_leg.php
-file_name = "nlcd_subset_1.npy"
+file_name = "nlcd_subset_5.npy"
 class_raster = np.load(file_name)
-class_raster[class_raster != 41] = 1  # Class 1 - everything else.
-class_raster[class_raster == 41] = 2  # Class 2 - deciduous forest.
+# class_raster[class_raster != 41] = 1  # Class 1 - everything else.
+# class_raster[class_raster == 41] = 2  # Class 2 - deciduous forest.
 patch_id = 0
 fill = set()
 height, width = class_raster.shape
@@ -34,6 +35,7 @@ def flood_fill():
 fill_raster = np.zeros((class_raster.shape), np.uint32)
 
 # Go through the cells and assign a unique patch id to each contiguous set of pixels.
+patch_list = []
 for r in range(class_raster.shape[0]):
     for c in range(class_raster.shape[1]):
         if fill_raster[r, c] == 0:
@@ -41,14 +43,27 @@ for r in range(class_raster.shape[0]):
             print("Processing patch " + str(patch_id))
             fill.add((r, c))
             flood_fill()
+            v = class_raster[r, c]
+            patch_list.append({
+                "id": patch_id,
+                "size": int((fill_raster == patch_id).sum()),
+                "class": int(v),
+                "class_size": int((class_raster == v).sum())
+            })
 
-# An example of what you can do with this data - plot a histogram of patch sizes.
-patch_sizes = []
-for i in range(fill_raster.max()):
-    patch_sizes.append((fill_raster == i).sum())
-patch_sizes.sort(reverse=True)
-plt.hist(patch_sizes, bins=10)
-plt.show()
+patch_list.sort(key=lambda x: x["size"], reverse=True)
+with open("patch_list.json", "w") as f:
+    f.write(json.dumps(patch_list))
+
+# Now we can use this data to get information from the raster, for example, the largest forest class (v = 41)
+out_arr = np.zeros(class_raster.shape)
+for d in patch_list:
+    if d["class"] == 41:
+        patch_id = d["id"]
+        out_arr[fill_raster == patch_id] = 1
+        plt.imshow(out_arr)
+        plt.show(block=True)
+        break
 
 # Compare original, class raster, target raster
 original = np.load(file_name)
@@ -58,17 +73,17 @@ original = np.load(file_name)
 # plt.imshow(original)
 
 plt.subplot(211)
-plt.title("Deciduous Forest / Other")
+plt.title("Land Cover")
 plt.imshow(class_raster)
-
-# plt.subplot(212)
-# plt.title("Patch Identifiers")
-# plt.imshow(fill_raster)
-
 
 plt.subplot(212)
 plt.title("Patch Identifiers")
-plt.imshow(fill_raster * (class_raster == 2))
+plt.imshow(fill_raster)
+
+
+# plt.subplot(212)
+# plt.title("Patch Identifiers")
+# plt.imshow(fill_raster * (class_raster == 2))
 
 # Skewed distribution of patch sizes.
 plt.show(block=True)

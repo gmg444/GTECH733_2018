@@ -1,3 +1,9 @@
+
+# -------------------------------------------------------------------------
+# Tree classification with GDAL and scikit image. Written by Anne Schwenker
+# and Shantal Taveras for GTECH734 Geo Web Services at Hunter College 2017.
+# -------------------------------------------------------------------------
+
 import gdal
 import scipy
 import scipy.ndimage
@@ -21,7 +27,7 @@ def makeTreeTif(infile):
     
     # Create an array of the input raster
     # Create a binary array where buildings(>=50) = 1
-    buildingsBinary = np.where(arr >= 50, 1, 0).astype(np.bool)
+    buildingsBinary = np.where(arr >= 30, 1, 0).astype(np.bool)
 
     # Create a binary array were ground(<=) = 1
     groundBinary = np.where(arr <= 2, 1, 0).astype(np.bool)
@@ -33,7 +39,7 @@ def makeTreeTif(infile):
     nonTreeBinary = np.add(buildingsBinary_dilation,groundBinary)
 
     # Dilate non tree binary array
-    nonTreeBinary_dilation = scipy.ndimage.morphology.binary_dilation(nonTreeBinary)
+    nonTreeBinary_dilation = scipy.ndimage.morphology.binary_dilation(groundBinary)
 
     # Close gaps in dilated non tree binary array to remove isolated 1 values
     nonTreeBinary_dilation_opening =scipy.ndimage.binary_opening(nonTreeBinary_dilation, structure=np.ones((6,6))).astype(np.int)
