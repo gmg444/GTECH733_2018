@@ -39,12 +39,10 @@ def DDA(coords):
 
 def bresenham(coords):
     """Algorithm - involves integer calculations only - should be faster:
-        Calculate the difference between endpoints
-        Get the number of steps in each direction
-        Get the x,y increment
-        Step through increments and turn on pixels
+      Calculate the difference between endpoints
+      Step over each x and decide which y pixel to turn on based on integer / zero-based arithmetic
       From: https://github.com/encukou/bresenham/blob/master/bresenham.py
-      :param coords: Starting and ending points of line
+      param coords: Starting and ending points of line
       :return: list of integer points on the line
       """
 
@@ -70,7 +68,8 @@ def bresenham(coords):
     result = []
     for x in range(dx + 1):
         # yield x0 + x*xx + y*yx, y0 + x*xy + y*yy
-        result.append([x0 + x*xx + y*yx, y0 + x*xy + y*yy])
+        new_x, new_y = x0 + x*xx + y*yx, y0 + x*xy + y*yy
+        result.append([new_x, new_y])
         if D > 0:
             y += 1
             D -= dx
@@ -81,8 +80,8 @@ def bresenham(coords):
 grid_size = 100
 grid = np.zeros((grid_size, grid_size))
 
+# A few random lines
 lines = [randint(100, size=(2, 2)) for i in range(10)]
-
 for line in lines:
     # points_in_line = DDA(line)
     points_in_line = bresenham(line)
