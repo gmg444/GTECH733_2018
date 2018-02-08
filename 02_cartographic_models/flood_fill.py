@@ -1,5 +1,5 @@
 # #############################################################################
-# # Flood fill without recursion
+# # Flood fill without recursion - from Lawhead GIS book
 # #############################################################################
 import matplotlib.pyplot as plt
 import numpy as np

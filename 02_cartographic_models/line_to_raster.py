@@ -1,6 +1,4 @@
-# This module includes a few different algorithms for converting vector geometry to raster.
-# Line drawing - digital differential analyzer and Bresenham's algorithm.
-# Polygon fill -
+# Line drawing algorithms
 
 import numpy as np
 from numpy.random import randint

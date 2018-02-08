@@ -1,6 +1,4 @@
-# This module includes a few different algorithms for converting vector geometry to raster.
-# Line drawing - digital differential analyzer and Bresenham's algorithm.
-# Polygon fill -
+# Polygon scan line fill algorithm
 
 import matplotlib.pyplot as plt
 import json
