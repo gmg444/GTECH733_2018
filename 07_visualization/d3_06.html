@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>D3 enter exit groups</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+   <svg width="500" height="500" style="border: 1px solid"> </svg>
+  </body>
+  <script>
+/*
+Experiment with scale in console:
+var yScale = d3.scaleLinear()
+    .domain([10, 1200]) // min and max value in our data array
+    .range([0, 500]); // min and max value of our svg container
+ 
+// Now we can see how our values are mapped
+yScale(10); // 0
+yScale(500); // 205.88
+yScale(980); // 407.56
+yScale(1200); // 500
+
+Then, go through creating a bar chart.
+Note that y needs to be inverted because
+svg starts with 0,0 in upper left:
+
+.attr("y", function(d) { return 500 - yScale(d);})          
+
+// -------------------------------------
+var data = [10, 15, 25, 120, 500, 980, 1200];
+
+// Create yScale
+var yScale = d3.scaleLinear()
+			 .domain([10, 1200])
+			 .range([0, 500]);
+
+d3.select("svg")
+.selectAll("rect")
+.data(data)
+.enter()
+.append("rect")
+  .attr("width", 30)
+  .attr("height", function(d) { return yScale(d); })
+  .attr("x", function(d, i) { return i * 30; })
+  .attr("y", function(d) { return 500 - yScale(d);})
+  .style("fill", "blue")
+  .style("stroke", "black")
+  .style("stroke-width", "1px")
+  .style("opacity", .25);
+// -------------------------------------
+Using scales to interpolate colors:
+
+var colorScale = d3.scaleLinear()
+  .domain([1, 10])
+  .range(["red", "green"]);
+colorScale(1); // "rgb(255, 0, 0)"
+colorScale(10); // "rgb(0, 128, 0)
+
+Using built-in interpolators:
+https://github.com/d3/d3-interpolate
+
+var colorScale = d3.scaleLinear()
+  .domain([1, 10])
+  .range(["red", "green"])
+  .interpolate(d3.interpolateHcl);
+
+// -------------------------------------
+// By default clamping is disabled
+var x = d3.scaleLinear()
+    .domain([10, 100])
+    .range([0, 500]);
+x(2); // -44.44444444444444
+x(150); // 777.7777777777778
+ 
+// Enable clamping
+x.clamp(true);
+x(2); // 0 -- Clamped to the min of range
+x(150); // 500 -- Clamped to the max of range
+*/
+</script>
+
+</body>

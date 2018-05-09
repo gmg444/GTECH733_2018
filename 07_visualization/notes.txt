@@ -1,0 +1,22 @@
+Go through:
+
+Start here:
+http://pbpython.com/visualization-tools-1.html
+Show pygal and seaborn
+
+Online d3 generator:
+https://plot.ly/create/
+https://plot.ly/~gmg444/
+http://app.rawgraphs.io/
+
+http://rajapradhan.com/blogs/d3-js-v4-essentials/
+Then go here:
+https://maori.geek.nz/drawing-maps-with-d3-js-and-other-geographical-fun-3a6eedeb8e3
+
+
+Sources for threejs:
+
+http://blog.teamtreehouse.com/the-beginners-guide-to-three-js
+https://webdesign.tutsplus.com/tutorials/a-noobs-guide-to-threejs--cms-28639
+https://aerotwist.com/tutorials/getting-started-with-three-js/
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SVG Elements Demo</title>
+</head>
+<body>
+  <!-- Previously we saw generated SVGs; like Postscript or other
+       text graphics formats, you can also write the code manually.
+       Note coordinate system has 0,0 in upper left:
+	   https://www.sarasoueidan.com/blog/svg-coordinate-systems -->
+  <svg width="500" height="400"
+   style="1px solid black">
+
+	<circle cx="40" cy="100" r="30" 
+	 fill="red" stroke="green" stroke-width="5"/>
+
+	<rect x="100" y="70" width="100" 
+	 height="60" fill="blue"/>
+
+	<ellipse cx="150" cy="210" rx="100" ry="25"
+	 fill="orange"/>
+
+	<line x1="240" y1="10" x2="240" y2="150" stroke="red"/>
+
+	<text x="20" y="280" font-family="serif" 
+	 font-size="25">Hello World</text>
+  </svg>
+</body>
+</html>

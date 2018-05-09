@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+
+<div id='js-map-nz-center'></div>
+
+<script src='http://code.jquery.com/jquery-2.0.3.js'></script>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v0.min.js"></script>
+<script src="worldtopo.js"></script>
+<style>
+
+.background {
+  fill: #a4bac7;
+}
+
+.foreground {
+  fill: none;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+.graticule {
+  fill: none;
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
+.graticule :nth-child(2n) {
+  stroke-dasharray: 2,2;
+}
+
+.land {
+  fill: #d7c7ad;
+  stroke: #766951;
+}
+
+.geojson {
+ fill: none;
+ stroke: red;
+ stroke-width: 5;
+}
+
+.boundary {
+  fill: none;
+  stroke: #a5967e;
+}
+
+</style>
+
+<script>
+
+// From https://maori.geek.nz/drawing-maps-with-d3-js-and-other-geographical-fun-3a6eedeb8e3
+var width = $(window).width(),
+    height = $(window).height();
+
+var sc = Math.min(width,height) * 0.5
+
+// Defines projection from 
+var projection = d3.geo.equirectangular()
+    .scale(sc)
+    .translate([width/2,height/2])
+    .rotate([-180,0])
+    .precision(100);
+
+// Defines function for convertin from path to projected coordinates
+var path = d3.geo.path()
+    .projection(projection);
+
+// Defines a graticule
+var graticule = d3.geo.graticule();
+
+var svg = d3.select("#js-map-nz-center").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.append("path")
+    .datum(graticule.outline)
+    .attr("class", "background")
+    .attr("d", path);
+
+// Creatses lines based on graticule object
+svg.append("g")
+    .attr("class", "graticule")
+  .selectAll("path")
+    .data(graticule.lines)
+  .enter().append("path")
+    .attr("d", path);
+
+  // Creates lines from topojson.  See:
+  // https://github.com/topojson/topojson-client/blob/master/README.md#mesh
+  svg.insert("path", ".graticule")
+      .datum(topojson.mesh(worldtopo, worldtopo.objects.countries, function(a, b) { return a.id !== b.id; }))
+      .attr("class", "boundary")
+      .attr("d", path);
+
+  // Creates shapes from topojson. See this for more details on topojson:
+  // https://github.com/topojson/topojson-specification
+  svg.insert("path", ".graticule")
+      .datum(topojson.object(worldtopo, worldtopo.objects.land))
+      .attr("class", "land")
+      .attr("d", path);
+
+
+</script>
+

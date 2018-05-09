@@ -1,0 +1,87 @@
+id1	id2	count
+Climate change	Renewable energy	77
+Renewable energy	Climate change	77
+Community and economic development	Climate change	70
+Climate change	Community and economic development	70
+International development	Agriculture	54
+Agriculture	International development	54
+Community and economic development	Renewable energy	48
+Renewable energy	Community and economic development	48
+International development	Climate change	47
+Climate change	International development	47
+International development	Economic development	45
+Economic development	International development	45
+Community and economic development	International development	43
+International development	Community and economic development	43
+Climate change	Agriculture	42
+Agriculture	Climate change	42
+Climate change	Natural resources	38
+Natural resources	Climate change	38
+Agriculture	 fishing and forestry	38
+ fishing and forestry	Agriculture	38
+Agriculture	Sustainable agriculture	38
+Sustainable agriculture	Agriculture	38
+Public health	International development	35
+International development	Public health	35
+International development	Natural resources	35
+Natural resources	International development	35
+Climate change	Economic development	35
+Economic development	Climate change	35
+Climate change	International relations	34
+International relations	Climate change	34
+International development	Renewable energy	33
+Renewable energy	International development	33
+Climate change	Fossil fuels	32
+Fossil fuels	Climate change	32
+Water resources	Clean water supply	32
+Clean water supply	Water resources	32
+Agriculture	Rural development	31
+Rural development	Agriculture	31
+Natural resources	Sustainable development	31
+Sustainable development	Natural resources	31
+Sustainable development	Economic development	31
+Economic development	Sustainable development	31
+Public health	Community and economic development	30
+Community and economic development	Public health	30
+Climate change	Sustainable development	30
+Sustainable development	Climate change	30
+International development	Sustainable agriculture	29
+Sustainable agriculture	International development	29
+Nutrition	Agriculture	29
+Agriculture	Nutrition	29
+Nutrition	Food aid	29
+Food aid	Nutrition	29
+Renewable energy	Public utilities	29
+Public utilities	Renewable energy	29
+Science	Climate change	28
+Climate change	Science	28
+International development	Rural development	28
+Rural development	International development	28
+International development	Sustainable development	28
+Sustainable development	International development	28
+Community and economic development	Natural resources	27
+Natural resources	Community and economic development	27
+International development	Nutrition	27
+Nutrition	International development	27
+Climate change	Air quality	27
+Air quality	Climate change	27
+Natural resources	Economic development	27
+Economic development	Natural resources	27
+Human services	Employment	27
+Employment	Human services	27
+Community and economic development	Human services	26
+Human services	Community and economic development	26
+Agriculture	Renewable energy	26
+Renewable energy	Agriculture	26
+Renewable energy	Air quality	26
+Air quality	Renewable energy	26
+Endocrine	 nutritional and metabolic diseases	26
+ nutritional and metabolic diseases	Endocrine	26
+Science	Renewable energy	25
+Renewable energy	Science	25
+Community and economic development	Telecommunications	25
+Telecommunications	Community and economic development	25
+Community and economic development	International relations	25
+International relations	Community and economic development	25
+International development	Human services	25
+Human services	International development	25

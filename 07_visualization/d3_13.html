@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Subject Chord Diagram</title>
+<script src="https://d3js.org/d3.v3.js"></script>
+    
+	<style>
+		body{
+			margin: 1em auto 4em auto;
+			position: relative;
+			width: 720px;
+		}
+		h1{
+			font: 30px Arial;
+			font-weight: normal;
+			text-align: center;
+		}
+		.group path{
+			fill-opacity: 0.5;
+		}
+
+		svg{
+			font: 14px Arial;
+			font-weight: bold;
+			fill: #666666;
+		}
+
+		.chord{
+			fill-opacity: 0.9;
+		}
+
+		path.chord {
+			stroke: 000;
+			stroke-width: 0.25px;
+		}
+
+		#circle circle {
+			fill: none;
+			pointer-events: all;
+		}
+
+		#circle:hover path.fade {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<h1>Common Proposal Subjects</h1>
+<script src="subjects.js"></script>
+</body>
+
+</html>

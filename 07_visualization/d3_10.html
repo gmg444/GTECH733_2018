@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="description" content="Line Genarator Demo">
+    <title>Line Genarator Demo</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <script>
+      var width = 500;
+      var height = 500;
+      var margin = 25;
+      var axisLength = width - 2 * margin;
+      
+      var data1 = [
+        {x: 0, y: 4},
+        {x: 1, y: 9},
+        {x: 2, y: 6},
+        {x: 4, y: 5},
+        {x: 6, y: 7},
+        {x: 7, y: 3},
+        {x: 9, y: 2}
+      ];
+      
+      var data2 = [
+        {x: 0, y: 3},
+        {x: 2, y: 7},
+        {x: 3, y: 4},
+        {x: 4, y: 3},
+        {x: 6, y: 3},
+        {x: 8, y: 4},
+        {x: 9, y: 1}
+      ];
+      
+      var svgContainer = d3.select("body")
+        .append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .style("border", "1px solid");
+      
+      var xScale = d3.scaleLinear()
+          .domain([0, 10])
+          .range([0, axisLength]);
+      
+      var yScale = d3.scaleLinear()
+          .domain([10, 0])
+          .range([0, axisLength]);
+      
+      var xAxis = d3.axisBottom(xScale);
+      var yAxis = d3.axisLeft(yScale);
+      
+      svgContainer.append("g")
+          .classed("x-axis", true)
+          .attr("transform", function() {
+            return "translate(" + margin + "," + (height - margin) + ")";
+          })
+          .call(xAxis);
+      
+      svgContainer.append("g")
+          .classed("y-axis", true)
+          .attr("transform", function() {
+            return "translate(" + margin + "," + margin + ")";
+          })
+          .call(yAxis);
+
+      // See http://d3indepth.com/shapes/ for information on 
+      // d3 shape generators.
+      var line = d3.line()
+          .x(function(d) { return xScale(d.x); })
+          .y(function(d) { return yScale(d.y); });
+      
+      // D is path description. SeeL
+      // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d
+      svgContainer.append("path")
+          .attr("d", line(data1))
+          .attr("fill", "none")
+          .attr("stroke", "red")
+          .attr("transform", function() {
+            return "translate(" + margin + "," + margin + ")";
+          });
+      
+      // Add a second line for data2
+      svgContainer.append("path")
+          .attr("d", line(data2))
+          .attr("fill", "none")
+          .attr("stroke", "blue")
+          .attr("transform", function() {
+            return "translate(" + margin + "," + margin + ")";
+          });
+    </script>
+  </body>
+</html>

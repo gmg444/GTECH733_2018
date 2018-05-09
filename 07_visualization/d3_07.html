@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axis Demo</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <script>
+    // Step through line-by-line:
+      var svgContainer = d3.select("body")
+        .append("svg")
+          .attr("width", 500)
+          .attr("height", 400)
+          .style("padding", "10px")
+          .style("border", "1px solid");
+
+      // A scale applies transformations without a visual component.
+      // D3 provides many scales as built-in functions
+      // http://d3indepth.com/scales/
+      // Note that yyou can use .clamp(true) to limit to min/max.
+      var xScale = d3.scaleLinear()
+          .domain([0, 100])
+          .range([0, 500]);
+      
+      // An axis uses a scale to transform from data to pixels.
+      // AxixBottom puts the ticks at the bottom.  
+      var xAxis = d3.axisBottom(xScale);
+      
+      // It is a function that is called on the group
+      // element (g) appended to the SVG element
+      svgContainer.append("g")
+          .call(xAxis);
+      
+      // To place the axis at the bottom of the container
+      /* svgContainer.append("g")
+          .attr("transform", function() {
+            return "translate(" + 0 + "," + 390 + ")"
+          })
+          .call(xAxis); */      
+    </script>
+  </body>
+</html>

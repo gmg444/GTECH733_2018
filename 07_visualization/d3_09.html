@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Transition Chaining Demo</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <div class="shape" style="width:100px; height:100px; background-color:blue; margin: auto"></div>
+    <script>
+    // Note that transitions can be chained together.
+      function changeShape() {
+        d3.select("div.shape")
+          // Transition 1
+          .transition()
+            .delay(1000)
+            .duration(2000)
+            .style("background-color", "red")
+            .style("border-radius", "50%")
+          // Transition 2
+          .transition()
+            .delay(1000)
+            .duration(2000)
+            .style("background-color", "blue")
+            .style("border-radius", "0px")
+      }
+      changeShape();
+      setInterval(changeShape, 6000);
+    </script>
+  </body>
+</html>

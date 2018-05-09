@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>D3 enter exit groups</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <svg width="400" height"100" style="border: 1px solid">
+      <circle cx="100" cy="70" r="10" fill="red"/>
+      <circle cx="200" cy="70" r="20" fill="blue"/>
+    </svg>
+  </body>
+  <script>
+/* More commands for console:
+
+var circles = d3.select("svg")
+  .selectAll("circle")
+  .data([30, 40]);
+
+// Look at circles in inspector for __data__ element.
+// Note that data is not in DOM - it is in memory
+// in JS only. 
+
+var circles = d3.select("svg")
+  .selectAll("circle"); 
+var data = [10, 20, 30, 40, 50];
+circles.data(data);
+
+// Now look at what's in circles.data(data);
+// _enter (3 not-yet-existing items)
+// _exit (empty)
+// _groups (2 existing items)
+
+circles.data(data); // Gives the update set
+circles.data(data).enter(); // Gives the enter set
+circles.data(data).exit(); // Gives the exit set
+
+// Adds the items in the enter set:
+circles.data(data)
+  .enter()
+  .append("circle");
+
+// Now look at the DOM - the circles have been added.
+// Now that they exist, we can bind data to them:
+
+var circles = d3.selectAll("circle")
+  .data(data);
+
+// Note the __data__ elements in the circle objects. 
+
+// Remove surplus circles
+circles.exit().remove();
+ 
+// Add new circles and then create a new selection
+// merging the new and the existing circles and then
+// update the merged selection
+circles.enter()
+  .append("circle")
+  .merge(circles)
+  .attr("fill", "green");
+*/
+  </script>
+</html>
